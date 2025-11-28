@@ -7,9 +7,9 @@ class TennisGame:
         self.player2_score = 0
 
     def won_point(self, player_name):
-        if player_name == self.player1_name:
+        if player_name == "player1":
             self.player1_score += 1
-        else:
+        elif player_name == "player2":
             self.player2_score += 1
 
     def tied(self):
@@ -34,12 +34,12 @@ class TennisGame:
     def advantage_or_win(self):
         score_difference = self.player1_score - self.player2_score
         if score_difference == 1:
-            return f"Advantage {self.player1_name}"
+            return "Advantage player1"
         if score_difference == -1:
-            return f"Advantage {self.player2_name}"
+            return "Advantage player2"
         if score_difference >= 2:
-            return f"Win for {self.player1_name}"
-        return f"Win for {self.player2_name}"
+            return "Win for player1"
+        return "Win for player2"
 
     names = {0: "Love", 1: "Fifteen", 2: "Thirty", 3: "Forty"}
 
