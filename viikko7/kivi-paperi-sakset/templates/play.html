@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Pelaa - Kivi-Paperi-Sakset{% endblock %}
+
+{% block content %}
+<h1>Kivi-Paperi-Sakset</h1>
+
+<h2>
+    {% if mode == 'pvp' %}👥 Pelaaja vs Pelaaja
+    {% elif mode == 'easy' %}🤖 Pelaaja vs Tietokone (Helppo)
+    {% else %}🧠 Pelaaja vs Tietokone (Vaikea)
+    {% endif %}
+</h2>
+
+<div class="score">
+    <p><strong>Pelaaja 1:</strong> {{ tuomari.ekan_pisteet }} / {{ winning_score }}</p>
+    <p><strong>{% if mode == 'pvp' %}Pelaaja 2{% else %}Tietokone{% endif %}:</strong> {{ tuomari.tokan_pisteet }} / {{ winning_score }}</p>
+    <p><strong>Tasapelit:</strong> {{ tuomari.tasapelit }}</p>
+</div>
+
+<form method="POST" action="{{ url_for('make_move') }}">
+    <h2>Pelaaja 1: Valitse siirto</h2>
+    <div class="move-buttons">
+        <button type="submit" name="move" value="k" class="move-btn" title="Kivi">🪨</button>
+        <button type="submit" name="move" value="p" class="move-btn" title="Paperi">📄</button>
+        <button type="submit" name="move" value="s" class="move-btn" title="Sakset">✂️</button>
+    </div>
+    {% if mode == 'pvp' %}
+    <h2 style="margin-top: 30px;">Pelaaja 2: Valitse siirto</h2>
+    <div class="move-buttons">
+        <button type="submit" name="move2" value="k" class="move-btn" title="Kivi">🪨</button>
+        <button type="submit" name="move2" value="p" class="move-btn" title="Paperi">📄</button>
+        <button type="submit" name="move2" value="s" class="move-btn" title="Sakset">✂️</button>
+    </div>
+    {% endif %}
+</form>
+
+<div class="button-group" style="margin-top: 30px;">
+    <a href="{{ url_for('reset') }}" class="btn">🔄 Aloita alusta</a>
+</div>
+{% endblock %}

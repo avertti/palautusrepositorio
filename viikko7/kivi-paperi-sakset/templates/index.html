@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Kivi-Paperi-Sakset - Aloitus{% endblock %}
+
+{% block content %}
+<h1>🪨 📄 ✂️</h1>
+<h1>Kivi-Paperi-Sakset</h1>
+
+<form method="POST" action="{{ url_for('select_mode') }}">
+    <h2>Valitse pelitila:</h2>
+    <div class="button-group">
+        <button type="submit" name="mode" value="pvp">👥 Pelaaja vs Pelaaja</button>
+        <button type="submit" name="mode" value="easy">🤖 Pelaaja vs Tietokone (Helppo)</button>
+        <button type="submit" name="mode" value="hard">🧠 Pelaaja vs Tietokone (Vaikea)</button>
+    </div>
+</form>
+
+<div style="margin-top: 30px; padding: 20px; background: #f0f0f0; border-radius: 10px;">
+    <h3 style="color: #764ba2; margin-bottom: 10px;">Säännöt:</h3>
+    <ul style="margin-left: 20px; line-height: 1.8;">
+        <li>Kivi voittaa Sakset</li>
+        <li>Sakset voittaa Paperi</li>
+        <li>Paperi voittaa Kivi</li>
+        <li><strong>Ensimmäinen {{ winning_score }} voittoon!</strong></li>
+    </ul>
+</div>
+{% endblock %}

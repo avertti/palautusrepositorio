@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Tulos - Kivi-Paperi-Sakset{% endblock %}
+
+{% block content %}
+<h1>Kivi-Paperi-Sakset</h1>
+
+<div class="result">
+    <h2 style="{% if 'Voitit' in result %}color: #4CAF50;{% elif 'Hävisit' in result %}color: #f44336;{% else %}color: #FF9800;{% endif %}">{{ result }}</h2>
+</div>
+
+<div class="moves">
+    <div class="move-display">
+        <div><strong>Sinä</strong></div>
+        <div class="icon">{% if player_move == 'Kivi' %}🪨{% elif player_move == 'Paperi' %}📄{% else %}✂️{% endif %}</div>
+        <div>{{ player_move }}</div>
+    </div>
+    <div class="vs">VS</div>
+    <div class="move-display">
+        <div><strong>{% if mode == 'pvp' %}Pelaaja 2{% else %}Tietokone{% endif %}</strong></div>
+        <div class="icon">{% if computer_move == 'Kivi' %}🪨{% elif computer_move == 'Paperi' %}📄{% else %}✂️{% endif %}</div>
+        <div>{{ computer_move }}</div>
+    </div>
+</div>
+
+<div class="score">
+    <p><strong>Pelaaja 1:</strong> {{ tuomari.ekan_pisteet }} / {{ winning_score }}</p>
+    <p><strong>{% if mode == 'pvp' %}Pelaaja 2{% else %}Tietokone{% endif %}:</strong> {{ tuomari.tokan_pisteet }} / {{ winning_score }}</p>
+    <p><strong>Tasapelit:</strong> {{ tuomari.tasapelit }}</p>
+</div>
+
+{% if winner %}
+<div style="background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center; border: 2px solid #ffc107;">
+    <h2 style="color: #856404; margin-bottom: 10px;">🎉 Peli päättyi! 🎉</h2>
+    <p style="font-size: 1.3em; color: #856404;">
+        {% if winner == 'player1' %}<strong>Pelaaja 1 voitti pelin!</strong>
+        {% else %}<strong>{% if mode == 'pvp' %}Pelaaja 2{% else %}Tietokone{% endif %} voitti pelin!</strong>
+        {% endif %}
+    </p>
+</div>
+<div class="button-group">
+    <a href="{{ url_for('game_over') }}" class="btn">📊 Näytä lopputulos</a>
+    <a href="{{ url_for('reset') }}" class="btn">🔄 Aloita uusi peli</a>
+</div>
+{% else %}
+<div class="button-group">
+    <a href="{{ url_for('play') }}" class="btn">▶️ Pelaa uudelleen</a>
+    <a href="{{ url_for('reset') }}" class="btn">🔄 Aloita alusta</a>
+</div>
+{% endif %}
+{% endblock %}

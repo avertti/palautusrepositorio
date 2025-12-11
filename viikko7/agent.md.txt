@@ -1,0 +1,3 @@
+Raportti
+
+Agentin tekemä sovellus toimii pääosin hyvin. Ainoa mikä ei toimi aivan oikein on pelaaja vs pelaaja. Sovelluksen toiminnan testasin kokeilemalla sovellusta itse ja katselin koodia läpi. Joudin antamaan noin 5 lisäystä alkuperäisiin viesteihin. Agentin tekemät testit olivat ihan hyvät. Agentin tekemä koodi oli vähän epäselvää kun sitä yritti lukea. Agentti muutti alkuperäistä koodia vähän. Opin käyttämään vscoden AI agenttia.

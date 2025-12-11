@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Peli Päättyi - Kivi-Paperi-Sakset{% endblock %}
+
+{% block content %}
+<h1> Peli Päättyi! </h1>
+
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 15px; color: white; text-align: center; margin: 30px 0;">
+    <h2 style="color: white; margin-bottom: 20px;"> Voittaja </h2>
+    <p style="font-size: 2em; font-weight: bold; margin: 20px 0;">
+        {% if winner == 'player1' %}Pelaaja 1
+        {% else %}{% if mode == 'pvp' %}Pelaaja 2{% else %}Tietokone{% endif %}
+        {% endif %}
+    </p>
+</div>
+
+<div class="score" style="font-size: 1.2em;">
+    <h2 style="color: #764ba2; margin-bottom: 20px;">Lopputulokset</h2>
+    <p><strong>Pelaaja 1:</strong> {{ tuomari.ekan_pisteet }} voittoa</p>
+    <p><strong>{% if mode == 'pvp' %}Pelaaja 2{% else %}Tietokone{% endif %}:</strong> {{ tuomari.tokan_pisteet }} voittoa</p>
+    <p><strong>Tasapelit:</strong> {{ tuomari.tasapelit }}</p>
+    <p style="margin-top: 20px; color: #666;"><em>Ensimmäinen 5 voittoon</em></p>
+</div>
+
+<div class="button-group" style="margin-top: 40px;">
+    <a href="{{ url_for('reset') }}" class="btn"> Pelaa uusi peli</a>
+    <a href="{{ url_for('index') }}" class="btn"> Palaa alkuun</a>
+</div>
+
+<div style="margin-top: 30px; text-align: center; color: #666;">
+    <p>Kiitos pelaamisesta!</p>
+</div>
+{% endblock %}
